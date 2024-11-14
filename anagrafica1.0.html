@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Anagrafica 1.0</title>
+    <link rel="stylesheet" href="styleanagrafica.css">
+</head>
+<body>
+    <h1>Anagrafica</h1>
+    <br>
+    <form>
+        <input type="text" id="nome" placeholder="Nome">
+        <br>
+        <input type="text" id="cognome" placeholder="Cognome">
+        <br>
+        <input type="text" id="indirizzo" placeholder="Indirizzo">
+        <br>
+        <input type="text" id="citta" placeholder="Città">
+        <br>
+        <input type="text" id="email" placeholder="Email">
+        <br>
+        <input type="button" id="bottone" value="Inserisci" onclick="creaUtente()">
+    </form>
+
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>Cognome</th>
+            <th>Indirizzo</th>
+            <th>Città</th>
+            <th>Email</th>
+        </tr>
+
+        <tbody id="tabella">
+        </tbody>
+    </table>
+</body>
+
+<script>
+    const users = [];
+
+
+    function pushUsers(nome, cognome, indirizzo, citta, email) {
+        const user = [nome, cognome, indirizzo, citta, email];
+        users.push(user);
+    }
+
+
+    function creaUtente() {
+        const nome = document.getElementById("nome").value;
+        const cognome = document.getElementById("cognome").value;
+        const indirizzo = document.getElementById("indirizzo").value;
+        const citta = document.getElementById("citta").value;
+        const email = document.getElementById("email").value;
+
+        pushUsers(nome, cognome, indirizzo, citta, email);
+        const user = users[users.length - 1];
+        const riga = document.createElement("tr");
+
+        for (let i = 0; i < user.length; i++) {
+            const cella = document.createElement("td");
+            cella.innerHTML = user[i];
+            riga.appendChild(cella);
+        }
+
+        document.getElementById("tabella").appendChild(riga);
+    }
+</script>
+</html>
